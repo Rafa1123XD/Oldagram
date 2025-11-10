@@ -29,8 +29,14 @@ const posts = [
 ]
 const postsContainer = document.getElementById("posts-container")
 
+function like(post){
+    posts[post].likes += 1
+    renderPosts()
+}
+
 
 function renderPosts() {
+    postsContainer.innerHTML = ""
     for(let i = 0; i < posts.length; i++){
         let postHTMl = ""
         postHTMl += `
@@ -43,10 +49,10 @@ function renderPosts() {
                    </div>
                 </div>
                 <div class="post">
-                    <img src="${posts[i].post}" alt="">
+                    <img src="${posts[i].post}" alt="" class="post-image" data-index="${i}">
                 </div>
                 <div class="post-icons">
-                    <img src="images/icon-heart.png" alt="" class="icons">
+                    <img src="images/icon-heart.png" alt="" class="icons like-btn" data-index="${i}">
                     <img src="images/icon-comment.png" alt="" class="icons">
                     <img src="images/icon-dm.png" alt="" class="icons">
                 </div>
@@ -57,7 +63,28 @@ function renderPosts() {
             </div>
             `
         postsContainer.innerHTML += postHTMl
+
     }
+    
+    addEventListeners()
+}
+
+function addEventListeners() {
+    const likeButtons = document.querySelectorAll('.like-btn')
+    likeButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const postIndex = parseInt(this.getAttribute('data-index'))
+            like(postIndex)
+        })
+    })
+    
+    const postImages = document.querySelectorAll('.post-image')
+    postImages.forEach(img => {
+        img.addEventListener('dblclick', function() {
+            const postIndex = parseInt(this.getAttribute('data-index'))
+            like(postIndex)
+        })
+    })
 }
 
 renderPosts()
