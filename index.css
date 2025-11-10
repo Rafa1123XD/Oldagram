@@ -9,6 +9,9 @@ header {
     height: 60px;
     margin: 0 auto;
     border-bottom: 1px solid #C6C6C6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #logo {
@@ -21,8 +24,11 @@ header {
     margin: 0 auto;
 }
 
-posts-container {
-    
+#profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 10px 0 0;
 }
 
 .post-header img {
@@ -71,4 +77,9 @@ posts-container {
 
 .post-nick {
     font-weight: bold;
+}
+
+.icons:hover {
+    transform: scale(1.1, 1.1);
+    transition: all 0.3s ease;
 }
