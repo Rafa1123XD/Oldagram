@@ -27,4 +27,37 @@ const posts = [
         likes: 152
     }
 ]
+const postsContainer = document.getElementById("posts-container")
 
+
+function renderPosts() {
+    for(let i = 0; i < posts.length; i++){
+        let postHTMl = ""
+        postHTMl += `
+                <div class="container">
+                <div class="post-header">
+                   <img src="${posts[i].avatar}">
+                   <div class="post-header-info">
+                       <p class="post-author">${posts[i].name}</p>
+                       <p class="post-loc">${posts[i].location}</p>
+                   </div>
+                </div>
+                <div class="post">
+                    <img src="${posts[i].post}" alt="">
+                </div>
+                <div class="post-icons">
+                    <img src="images/icon-heart.png" alt="" class="icons">
+                    <img src="images/icon-comment.png" alt="" class="icons">
+                    <img src="images/icon-dm.png" alt="" class="icons">
+                </div>
+                <div class="post-interactions">
+                    <p>${posts[i].likes} likes</p>
+                    <p><span class="post-nick">${posts[i].username}</span> ${posts[i].comment}</p>
+                </div>
+            </div>
+            `
+        postsContainer.innerHTML += postHTMl
+    }
+}
+
+renderPosts()
